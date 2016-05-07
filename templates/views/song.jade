@@ -1,0 +1,25 @@
+extends ../layouts/default
+include ../mixins/singers
+include ../mixins/songs
+include ../mixins/song
+
+block content
+	div(class='col-lg-2')
+		+create_singers(locals.data.singers, locals.data.active.singer)
+	div(class='col-lg-2')
+		+create_songs(locals.data.songs, locals.data.active.song)
+	div(class='col-lg-6')
+		+create_song(locals.data.song)
+	
+	
+block js
+	script.
+		jQuery(function ($) {
+			$(document).ready(function () {
+			    var singer_link = $('#singers_accordion')
+				    .find('a.singer_element.active');
+			    singer_link.parents('.panel-collapse').addClass('in');
+			});
+		    });
+
+

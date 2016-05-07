@@ -1,0 +1,15 @@
+each song in songs
+	div(class='song_element' singer_id='#{song.singer}' song_id='#{song._id}')!= song.name
+	
+script.
+	jQuery(function ($) {
+		$('.song_element').on('click', function (e) {
+		    var $this = $(this);
+		    $.get("/ajax/" + $(this).attr('singer_id') + "/songs/" + $(this).attr('song_id') + "", function (data) {
+			window.history.pushState("singer", "Singer Title", "/" + $this.attr('singer_id') + "/songs/" + $this.attr('song_id') + "");
+			$('#songs_area').html(data);
+		    });
+		    return false;
+		});
+	    });
+					

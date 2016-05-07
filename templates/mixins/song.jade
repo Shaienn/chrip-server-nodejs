@@ -1,0 +1,33 @@
+mixin create_song(song)
+	- if (typeof (song) !== 'undefined') {
+			div(class='song-scale-selector col-lg-12')
+				div(class='panel panel-default')
+					div(class='btn-group btn-group-justified') 
+						each link, tone in song.tones
+							- var active = ""
+							- if (link == song.scale || tone == song.scale) {
+							- var active = "active"
+							- }
+							a(class='btn btn-primary #{active}' href="/#{song.gaid}/songs/#{song.gsid}/#{link}")!= tone
+			div(class='song-parts col-lg-8')
+				each part, i in song.parts
+					- if ((i > 0) && (song.parts[i].type === song.parts[i - 1].type)) {
+
+					- } else {
+					div(class="song-part-title")!= part.visual + ":"
+					- }
+					
+					- var nochords = ""
+					- if (song.parts[i].nochords == true) {
+					- nochords = "nochords"
+					- }
+					div(class='song-part-preview #{nochords} song-#{part.type}-part')!= part.value
+			div(class='preview-modes col-lg-4')
+				div(class='panel panel-default affix-top' data-spy="affix")
+					div(class='panel-heading') 
+						|Инструменты
+					div(class='panel-body')
+						a(class='btn-block btn btn-info' href="/#{song.gaid}/songs/#{song.gsid}/nochords")
+							|Без аккордов
+
+	- }

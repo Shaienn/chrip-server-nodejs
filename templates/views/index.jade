@@ -1,0 +1,12 @@
+extends ../layouts/default
+include ../mixins/singers
+include ../mixins/songs
+
+
+block content
+	div(class='col-lg-2')
+		+create_singers(locals.data.singers, 0)
+	div(class='col-lg-2')
+	div(class='col-lg-6')
+
+

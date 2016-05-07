@@ -1,0 +1,18 @@
+mixin create_songs(songs, active)
+	- var active_a = ""
+	- var active_li = ""
+	div(class='songs_container scrollable-container affix-top' data-spy="affix")
+		div(class='panel panel-default')
+			ul(class='list-group')
+				- if (typeof (songs) !== 'undefined') {
+					each song in songs
+						- if (song.gsid == active) {
+						- active_a = "active"
+						- active_li = "list-group-item-success"
+						- } else {
+						- active_a = ""
+						- active_li = ""
+						- }
+						li(class='list-group-item #{active_li}')
+							a(class='song_element #{active_a}' singer_id="#{song.singer.gaid}" href="/#{song.singer.gaid}/songs/#{song.gsid}") #{song.name}
+				- }

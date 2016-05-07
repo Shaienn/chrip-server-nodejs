@@ -1,0 +1,25 @@
+mixin create_singers(singers, active)
+	div(class='singers_container panel-group scrollable-container affix-top' id='singers_accordion' data-spy="affix")
+		- var i = 0;
+		- var active_a = ""
+		- var active_li
+		- for (i = 0; i < singers.length; i++) {
+			div(class='panel panel-default')
+				div(class='panel-heading')
+					h4(class='panel-title') #{singers[i].name.charAt(0)}
+				div(id='collapse#{i}', class='panel-collapse collapse')
+					ul(class='list-group')
+						- var last_letter = singers[i].name.charAt(0)
+						- for (var j = i; j < singers.length && singers[j].name.charAt(0) == last_letter; j++) {
+							- if (singers[j].gaid == active) {
+							- active_a = "active"
+							- active_li = "list-group-item-success"
+							- } else {
+							- active_a = ""
+							- active_li = ""
+							- }
+							li(class='list-group-item #{active_li}')
+								a(class='singer_element #{active_a}' singer_id="#{singers[j].gaid}" href="/#{singers[j].gaid}/songs") #{singers[j].name}
+						- }
+						- i = j - 1
+		- }

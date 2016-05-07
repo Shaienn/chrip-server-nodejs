@@ -1,0 +1,10 @@
+.container-fluid
+	div(class='song-scale-selector')
+		div(class='song-scale-container')
+			each weight, tone in tones
+				div(class='song-scale-element')!= tone
+				
+.container-fluid
+	div(class='song-parts')
+		each part in parts
+			p(class='song-part-preview show-chords song-#{part.type}-part')!= part.value

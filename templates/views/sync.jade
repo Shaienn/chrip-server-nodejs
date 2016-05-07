@@ -1,0 +1,32 @@
+extends ../layouts/default
+
+block intro
+	.container
+		h1 Sync
+	
+block content
+	.container
+		div Authors: 
+			span= locals.data.authors
+		div Songs: 
+			span= locals.data.songs
+		div(class="status")
+			Ready
+		div
+			button(type='button' class='sync') Sync
+
+
+block js
+	script.
+		jQuery(function ($) {
+
+			$('.sync').on('click', function (e) {
+			    var $this = $(this);
+			    var page = $this.attr('page');
+			    $.get("/startSync", function (data) {
+				$(".status").html("Started");
+			    });
+			    return false;
+			});
+
+		    });
