@@ -24,6 +24,9 @@ exports = module.exports = function (req, res) {
 	];
 
 	Q.all(songs_queue).spread(function (singers, songs, song) {
+	    
+	    console.log(song);
+	    
 	    locals.data.singers = singers;
 	    locals.data.songs = songs;
 	    locals.data.song = song;
