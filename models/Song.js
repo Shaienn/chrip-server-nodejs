@@ -17,7 +17,7 @@ Song.add({
     singer: {type: Types.Relationship, ref: 'Singer', index: true, initial: true},
     name: {type: String, required: true, initial: true},
     gsid: {type: Number, noedit: true, default: 0, watch: 'singer name state text', value: save_song},
-    text: {type: Types.Text},
+    text: {type: Types.Textarea},
     state: {type: Types.Select, options: 'committed, approved', default: 'committed', index: true},
     author: {type: Types.Relationship, ref: 'User', index: true},
     variants: {type: Types.Relationship, ref: 'SongVariant', many: true, hidden: true}
